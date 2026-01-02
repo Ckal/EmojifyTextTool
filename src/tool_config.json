@@ -1,0 +1,5 @@
+{
+  "description": "A tool that emojifies text by adding relevant emojis to enhance expressiveness.",
+  "name": "emojify_text",
+  "tool_class": "emojify_text.EmojifyTextTool"
+}
