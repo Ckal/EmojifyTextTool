@@ -17,4 +17,8 @@ if [ -f src/requirements.txt ]; then
     echo "✓ requirements.txt found"
 fi
 
+# Create build directory (required for CI artifact upload)
+mkdir -p build
+echo "Build completed successfully" > build/BUILD_SUCCESS.txt
+
 echo "✓ Build complete - ready for deployment"
