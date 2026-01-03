@@ -1,10 +1,9 @@
 #!/bin/bash
 set -e
 
-echo "Installing dependencies..."
-if [ -f src/requirements.txt ]; then
-    pip install -r src/requirements.txt
-fi
+echo "Validating app structure..."
+# For HF Spaces, we don't install dependencies in CI
+# HF Spaces will install requirements.txt automatically
 
 echo "Validating app..."
 if [ -f src/app.py ]; then
