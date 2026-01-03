@@ -17,11 +17,11 @@ jobs:
         run: |
           pip install huggingface_hub
           
-          # Clone or update HF Space
-          git clone https://huggingface.co/spaces/Chris4K/EmojifyTextTool space_repo || true
-          cd space_repo || git clone https://$HF_TOKEN@huggingface.co/spaces/Chris4K/EmojifyTextTool .
+          # Clone HF Space
+          git clone https://user:$HF_TOKEN@huggingface.co/spaces/Chris4K/EmojifyTextTool hf_space
+          cd hf_space
           
-          # Copy files
+          # Copy files from src/
           cp -r ../src/* .
           
           # Configure git
@@ -30,5 +30,5 @@ jobs:
           
           # Commit and push
           git add .
-          git commit -m "Deploy from GitHub" || echo "No changes"
-          git push https://$HF_TOKEN@huggingface.co/spaces/Chris4K/EmojifyTextTool main
+          git commit -m "Deploy from GitHub" || exit 0
+          git push https://user:$HF_TOKEN@huggingface.co/spaces/Chris4K/EmojifyTextTool main
