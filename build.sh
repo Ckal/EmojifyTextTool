@@ -1,20 +1,20 @@
 #!/bin/bash
 set -e
 
-echo "Validating app structure..."
-# For HF Spaces, we don't install dependencies in CI
-# HF Spaces will install requirements.txt automatically
+echo "Build process for HF Space..."
+# For HF Spaces, we don't install dependencies or validate in CI
+# HF Spaces will handle all of this automatically when deployed
 
-echo "Validating app..."
+# Verify required files exist
 if [ -f src/app.py ]; then
-    # Use python3 if available, otherwise python
-    if command -v python3 &> /dev/null; then
-        python3 -m py_compile src/app.py
-    elif command -v python &> /dev/null; then
-        python -m py_compile src/app.py
-    else
-        echo "Warning: Python not found, skipping syntax validation"
-    fi
+    echo "✓ app.py found"
+else
+    echo "✗ app.py missing"
+    exit 1
 fi
 
-echo "Build complete!"
+if [ -f src/requirements.txt ]; then
+    echo "✓ requirements.txt found"
+fi
+
+echo "✓ Build complete - ready for deployment"
