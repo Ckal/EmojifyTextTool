@@ -1,5 +1,15 @@
+import gradio as gr
 from transformers.tools.base import launch_gradio_demo
-from emojify_text import EmojifyTextTool
 
-# Test deployment - v1.0.2
-launch_gradio_demo(EmojifyTextTool)
+# Version: 2.0.0 - Fixed deprecated transformers.tools import, updated Gradio
+iface = gr.Interface(
+    fn=launch_gradio_demo,
+    inputs=gr.Textbox(lines=3, label="Input"),
+    outputs=gr.Textbox(label="Output"),
+    title="EmojifyTextTool",
+    description="EmojifyText"
+)
+
+if __name__ == "__main__":
+    iface.launch()
+
