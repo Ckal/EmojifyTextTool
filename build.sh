@@ -7,7 +7,14 @@ echo "Validating app structure..."
 
 echo "Validating app..."
 if [ -f src/app.py ]; then
-    python -m py_compile src/app.py
+    # Use python3 if available, otherwise python
+    if command -v python3 &> /dev/null; then
+        python3 -m py_compile src/app.py
+    elif command -v python &> /dev/null; then
+        python -m py_compile src/app.py
+    else
+        echo "Warning: Python not found, skipping syntax validation"
+    fi
 fi
 
 echo "Build complete!"
